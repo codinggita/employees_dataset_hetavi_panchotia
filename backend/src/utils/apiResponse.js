@@ -1,7 +1,4 @@
-export const successResponse = (
-  data,
-  message = "Success"
-) => {
+export const successResponse = (data, message = "Success") => {
   return {
     success: true,
     message,
@@ -9,10 +6,7 @@ export const successResponse = (
   };
 };
 
-export const errorResponse = (
-  message = "Something went wrong",
-  error = null
-) => {
+export const errorResponse = (message = "Something went wrong", error = null) => {
   return {
     success: false,
     message,
