@@ -9,10 +9,16 @@ export const getAllEmployees = async (query) => {
 
   let sort = {};
   if (query.sort) {
-    const sortField = query.sort === "experience" 
-      ? "profile.projects.tasks.assignedTo.skills.experience.years" 
-      : query.sort;
-    sort[sortField] = 1;
+    const fieldMap = {
+      name: "name",
+      experience: "profile.projects.tasks.assignedTo.skills.experience.years",
+      country: "profile.contact.address.location.country",
+      city: "profile.contact.address.city",
+      lastUpdated: "profile.projects.tasks.assignedTo.skills.experience.meta.lastUpdated",
+    };
+    const sortField = fieldMap[query.sort] || query.sort;
+    const order = query.order && query.order.toLowerCase() === "desc" ? -1 : 1;
+    sort[sortField] = order;
   } else {
     sort["createdAt"] = -1;
   }

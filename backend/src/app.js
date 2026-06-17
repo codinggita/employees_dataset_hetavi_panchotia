@@ -4,6 +4,7 @@ import morgan from "morgan";
 import logger from "./middlewares/loggerMiddleware.js";
 import errorHandler from "./middlewares/errorMiddleware.js";
 import authRoutes from "./routes/authRoutes.js";
+import searchRoutes from "./routes/searchRoutes.js";
 import employeeRoutes from "./routes/employeeRoutes.js";
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(logger);
 // Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/employees", employeeRoutes);
+app.use("/api/v1/search", searchRoutes);
 app.use("/employees", employeeRoutes);
 
 // Global Error Handler
